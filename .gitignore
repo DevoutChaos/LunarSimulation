@@ -70,3 +70,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+/ISAC_LunarSimulation/Temp
+/ISAC_LunarSimulation/obj
+/ISAC_LunarSimulation/Library
