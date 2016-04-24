@@ -16,7 +16,12 @@ public class DayCycle : MonoBehaviour {
 
         //This set our timer based on a set value (TimeScale)
         //As TimeScale increases, so to does the length of time until timer reaches the goal
-        Timer += Time.deltaTime/(60.0f*TimeScale);
+        //Timer += Time.deltaTime/(60.0f*TimeScale);
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Timer++;
+        }
+
         if(Timer > 1) Timer -= 2.0f;
 
         float des = 0;

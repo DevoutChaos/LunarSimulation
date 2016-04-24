@@ -6,12 +6,14 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    class Oxygen : MonoBehaviour
+    class OxygenGen : MonoBehaviour
     {
         public bool Broken;
         public int BrokeVal;
         System.Random rand = new System.Random();
         public GameMaster gm;
+        public Sprite sprite0;
+        public Sprite sprite1;
 
 
         void Start()
@@ -20,14 +22,29 @@ namespace Assets.Scripts
 
         void Update()
         {
-            if (!Broken)
+            if (!Broken && gm.electricity > 0)
             {
-                gm.oxygen = gm.oxygen + 1;
+                GetComponent<SpriteRenderer>().sprite = sprite0;
+                gm.oxygen = gm.oxygen + 0.1f;
+                gm.electricity -= 0.001f;
                 var chance = rand.Next(1, 100);
                 if (chance >= 99)
                     Broken = true;
             }
-                
+            else if (Broken)
+            {
+                GetComponent<SpriteRenderer>().sprite = sprite1;
+            }
+
+        }
+
+        void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.tag == "Player" && Input.GetKeyDown(KeyCode.F) && Broken == true)
+            {
+                Debug.Log("Fixed Solar Panel");
+                Broken = false;
+            }
         }
     }
 }

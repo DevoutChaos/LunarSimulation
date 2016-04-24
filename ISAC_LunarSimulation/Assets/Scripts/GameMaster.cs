@@ -32,56 +32,21 @@ public class GameMaster : MonoBehaviour
     {
         food = 20;
         water = 47;
-        electricity = 01;
+        electricity = 1;
         oxygen = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
+        oxygen -= 0.01f;
+        food -= 0.001f;
+        water -= 0.01f;
+
         foodText.text = Mathf.Floor(food).ToString();
         waterText.text = Mathf.Floor(water).ToString();
         electricityText.text = Mathf.Floor(electricity).ToString();
         oxygenText.text = Mathf.Floor(oxygen).ToString();
     }
 
-    void incrementFood(float number)
-    {
-        food += number;
-    }
-
-    void incrementElectricity()
-    {
-        electricity++;
-    }
-
-    void incrementOxygen()
-    {
-        oxygen++;
-    }
-
-    void incrementWater()
-    {
-        water++;
-    }
-
-    void decrementFood()
-    {
-        food--;
-    }
-
-    void decrementElectricity()
-    {
-        electricity--;
-    }
-
-    void decrementOxygen()
-    {
-        oxygen--;
-    }
-
-    void decrementWater()
-    {
-        water--;
-    }
 }
