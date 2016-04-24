@@ -9,7 +9,8 @@ namespace Assets.Scripts
     class OxygenGen : MonoBehaviour
     {
         public bool Broken;
-        public int BrokeVal;
+        [Header("Chance out of 10000 for breakage")]
+        public int BreakChance = 9999;
         System.Random rand = new System.Random();
         public GameMaster gm;
         public Sprite sprite0;
@@ -27,8 +28,8 @@ namespace Assets.Scripts
                 GetComponent<SpriteRenderer>().sprite = sprite0;
                 gm.oxygen = gm.oxygen + 0.1f;
                 gm.electricity -= 0.001f;
-                var chance = rand.Next(1, 100);
-                if (chance >= 99)
+                var chance = rand.Next(1, 10000);
+                if (chance >= BreakChance)
                     Broken = true;
             }
             else if (Broken)
