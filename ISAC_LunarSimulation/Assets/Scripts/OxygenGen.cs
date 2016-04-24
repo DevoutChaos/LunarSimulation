@@ -8,10 +8,10 @@ namespace Assets.Scripts
 {
     class Oxygen : MonoBehaviour
     {
-        public bool Broken { get; set; }
-        public int BrokeVal { get; set; }
+        public bool Broken;
+        public int BrokeVal;
         System.Random rand = new System.Random();
-        public GameMaster gm { get; set; }
+        public GameMaster gm;
 
 
         void Start()
