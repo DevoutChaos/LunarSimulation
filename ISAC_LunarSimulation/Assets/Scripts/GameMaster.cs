@@ -39,16 +39,15 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foodText.text = food.ToString();
-        waterText.text = water.ToString();
-        electricityText.text = electricity.ToString();
-        oxygenText.text = oxygen.ToString();
-
+        foodText.text = Mathf.Floor(food).ToString();
+        waterText.text = Mathf.Floor(water).ToString();
+        electricityText.text = Mathf.Floor(electricity).ToString();
+        oxygenText.text = Mathf.Floor(oxygen).ToString();
     }
 
-    void incrementFood()
+    void incrementFood(float number)
     {
-        food++;
+        food += number;
     }
 
     void incrementElectricity()

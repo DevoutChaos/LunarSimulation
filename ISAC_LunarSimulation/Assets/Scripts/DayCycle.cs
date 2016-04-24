@@ -14,6 +14,8 @@ public class DayCycle : MonoBehaviour {
     float LDes = 1;
     void Update() {
 
+        //This set our timer based on a set value (TimeScale)
+        //As TimeScale increases, so to does the length of time until timer reaches the goal
         Timer += Time.deltaTime/(60.0f*TimeScale);
         if(Timer > 1) Timer -= 2.0f;
 

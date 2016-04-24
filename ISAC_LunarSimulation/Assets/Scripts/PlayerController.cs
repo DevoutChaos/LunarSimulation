@@ -1,26 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     //Declarations
     public float moveSpeed;
     bool canMove;
+    bool inSpaceSuit;
+    public bool SuitSwitchable;
     public bool blocked;
     public float counter;
+    SpriteRenderer[] suits;
     Vector3 pos;
     Transform tr;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         blocked = false;
         pos = transform.position;
         tr = transform;
-	}
-	
-	// Update is called once per frame
+        inSpaceSuit = false;
+        suits = (SpriteRenderer[])GetComponentsInChildren<SpriteRenderer>(true);
+    }
+
+    // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F) && SuitSwitchable)
+        {
+            Debug.Log("Hello!!!");
+            SwitchCostume();
+        }
+
         if (Input.GetKey(KeyCode.W) && transform.position == pos)
         {
             counter = 0;
@@ -68,7 +81,7 @@ public class PlayerController : MonoBehaviour {
         {
             counter += Time.deltaTime * moveSpeed;
             transform.position = Vector2.MoveTowards(transform.position, pos, Time.deltaTime * moveSpeed);
-            
+
             if (counter >= 1.1)
             {
                 blocked = true;
@@ -78,6 +91,39 @@ public class PlayerController : MonoBehaviour {
         {
             pos = transform.position;
         }
-        
+
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "spaceSuitCollider")
+        {
+            SuitSwitchable = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "spaceSuitCollider")
+        {
+            SuitSwitchable = false;
+        }
+    }
+
+    public void SwitchCostume()
+    {
+        if (!inSpaceSuit)
+        {
+            
+            suits[0].enabled = false;
+            suits[1].enabled = true;
+            inSpaceSuit = true;
+        }
+        else
+        {
+            suits[0].enabled = true;
+            suits[1].enabled = false;
+            inSpaceSuit = false;
+        }
     }
 }
