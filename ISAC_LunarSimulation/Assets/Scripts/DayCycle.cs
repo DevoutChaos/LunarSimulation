@@ -3,6 +3,8 @@ using System.Collections;
 
 public class DayCycle : MonoBehaviour {
 
+    public int DayNo { get; set; }
+
     public float Timer = 0;
     public float TimeScale = 5;
 
@@ -31,6 +33,7 @@ public class DayCycle : MonoBehaviour {
         var c = Color.black;
         c.a = 0.3f * des;
         Overlay.material.SetColor("_TintColor", c );
+        
 
     }
 }
